@@ -1,0 +1,33 @@
+# permissions
+# getcase.admin:
+# /getcase reload - reload plugin
+# /getcase setcase <name> [!] You must look at the block - set block with interact case
+# /getcase preview <name> - show drop item from case
+# /getcase create <name> - create case
+# /getcase give <name> <player> <amount> - give player a key
+# /getcase giveall <name> <amount> - give all players keys
+# /getcase edit - edit drop case
+# /getcase removeloc [!] You must look at the block - remove block with chest interact
+# /getcase delete <name> - remove the case
+
+lang:
+  no-key: "&cYou haven't key to this case!"
+  reward-title: "&0Draw..."
+
+preview:
+  items:
+    exec:
+      material: LIME_DYE
+      slots: [49]
+      displayname: "&aOpen the case"
+      lore: []
+    background:
+      '1':
+        material: GRAY_STAINED_GLASS_PANE
+        slots: [ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53]
+        displayname: "&7"
+        lore: []
+
+loc-case: {}
+
+cases: {}

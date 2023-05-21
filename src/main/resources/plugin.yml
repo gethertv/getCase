@@ -1,0 +1,8 @@
+name: getCase
+version: '${project.version}'
+main: me.gethertv.getcase.GetCase
+api-version: 1.13
+softdepend:
+  - [Multiverse-Core]
+commands:
+  getcase:
