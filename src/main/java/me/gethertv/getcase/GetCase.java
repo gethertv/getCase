@@ -67,6 +67,11 @@ public final class GetCase extends JavaPlugin {
     @Override
     public void onDisable() {
 
+        reloadCase();
+        HandlerList.unregisterAll(this);
+    }
+
+    private void reloadCase() {
         for(CaseChestData chestData : GetCase.getInstance().getDataChest())
         {
             chestData.getLocation().getChunk().load(true);
@@ -86,8 +91,6 @@ public final class GetCase extends JavaPlugin {
                     player.closeInventory();
             });
         }
-
-        HandlerList.unregisterAll(this);
     }
 
     private void loadMusicData()
@@ -178,18 +181,7 @@ public final class GetCase extends JavaPlugin {
     public void reloadPluginCase()
     {
         reloadConfig();
-        for(CaseChestData chestData : GetCase.getInstance().getDataChest())
-        {
-            chestData.getLocation().getBlock().setType(Material.AIR);
-            chestData.getArmorStand().remove();
-        }
-        for(Player player : Bukkit.getOnlinePlayers())
-        {
-            caseData.forEach((key, value) -> {
-                if(player.getOpenInventory().equals(value.getInventory()))
-                    player.closeInventory();
-            });
-        }
+        reloadCase();
         globalModifyInv.clear();
         itemData.clear();
         caseData.clear();

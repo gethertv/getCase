@@ -42,7 +42,7 @@ public class CaseData {
         this.caseItem = caseItem;
         this.key = key;
         this.dropList = dropList;
-        inventory = Bukkit.createInventory(null, 54, ColorFixer.addColors("&0Case "+name));
+        inventory = Bukkit.createInventory(null, 54, ColorFixer.addColors(GetCase.getInstance().getConfig().getString("cases."+name+".name")));
         loadFillBg();
         loadDrop();
         loadBg();
