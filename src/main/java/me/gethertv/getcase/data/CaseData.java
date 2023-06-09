@@ -30,10 +30,6 @@ public class CaseData {
     private ItemStack key;
     private List<DropData> dropList;
     private Inventory inventory;
-
-    private ItemStack head;
-    private Material bgHead;
-
     private Sound soundOpenCase;
     private Sound soundNoKey;
 
@@ -45,7 +41,6 @@ public class CaseData {
         inventory = Bukkit.createInventory(null, 54, ColorFixer.addColors(GetCase.getInstance().getConfig().getString("cases."+name+".name")));
         loadFillBg();
         loadDrop();
-        loadBg();
         loadFooter();
         FileConfiguration config = GetCase.getInstance().getConfig();
         soundOpenCase = Sound.valueOf(config.getString("cases."+name+".sound.open-case").toUpperCase());
@@ -56,14 +51,6 @@ public class CaseData {
         GetCase.getInstance().getBackgroundItems().forEach(bg -> {
             bg.getSlots().forEach(slot -> inventory.setItem(slot, bg.getItemStack()));
         });
-    }
-
-    private void loadBg() {
-        FileConfiguration config = GetCase.getInstance().getConfig();
-        {
-            head = CustomHead.getCustomTextureHead(config.getString("cases."+name+".head"));
-        }
-        bgHead = Material.valueOf(config.getString("cases."+name+".bg-head").toUpperCase());
     }
 
     private void loadFooter()
@@ -148,8 +135,8 @@ public class CaseData {
         String key = getNumberIndex(caseData, location);
         CaseChestData caseChestData = new CaseChestData(key, caseData, location, hologram);
 
-        addHeadLucky(hologram, caseChestData);
-        location.getBlock().setType(bgHead);
+        //addHeadLucky(hologram, caseChestData);
+        //location.getBlock().setType(bgHead);
         GetCase.getInstance().getDataChest().add(caseChestData);
         player.sendMessage(ColorFixer.addColors("&aChests successfully added!"));
 
@@ -177,26 +164,9 @@ public class CaseData {
 
         CaseChestData caseChestData = new CaseChestData(id, caseData, location, hologram);
 
-        addHeadLucky(hologram, caseChestData);
-        location.getBlock().setType(bgHead);
         GetCase.getInstance().getDataChest().add(caseChestData);
     }
 
-    private void addHeadLucky(Location location, CaseChestData caseData) {
-
-        Location loc = location.clone().add(0.5, -0.4, 0.5);
-        ArmorStand hologram = (ArmorStand) loc.getWorld().spawnEntity(loc, EntityType.ARMOR_STAND);
-        hologram.setHelmet(head.clone());
-        hologram.setVisible(false);
-        hologram.setGravity(false);
-        hologram.setSmall(true);
-        hologram.setCanPickupItems(false);
-        hologram.setInvulnerable(true);
-        hologram.setBasePlate(false);
-        hologram.setMarker(true);
-        hologram.setCustomNameVisible(false);
-        caseData.setArmorStand(hologram);
-    }
 
     public void setSoundOpenCase(Sound soundOpenCase) {
         this.soundOpenCase = soundOpenCase;

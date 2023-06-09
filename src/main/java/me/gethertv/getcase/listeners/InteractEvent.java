@@ -14,6 +14,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.EquipmentSlot;
 
 import java.util.Map;
 
@@ -22,8 +23,6 @@ public class InteractEvent implements Listener {
     @EventHandler
     public void onClickPlayer(PlayerInteractEvent event)
     {
-
-
 
         Player player = event.getPlayer();
         if(event.getAction()==Action.RIGHT_CLICK_BLOCK) {
@@ -50,6 +49,10 @@ public class InteractEvent implements Listener {
                         location.getBlockY() == chestData.getLocation().getBlockY() &&
                         location.getBlockZ() == chestData.getLocation().getBlockZ()) {
                     event.setCancelled(true);
+
+                    if(EquipmentSlot.OFF_HAND==event.getHand())
+                        return;
+
                     player.playSound(location, chestData.getCaseData().getSoundOpenCase(), 1F, 1F);
                     chestData.getCaseData().openPreview(player);
                     return;

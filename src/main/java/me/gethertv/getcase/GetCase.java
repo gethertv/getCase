@@ -60,7 +60,7 @@ public final class GetCase extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new InteractEvent(), this);
         getServer().getPluginManager().registerEvents(new BreakBlock(), this);
 
-        new RotateHeadCase().runTaskTimer(this, 0L, 1L);
+        //new RotateHeadCase().runTaskTimer(this, 0L, 1L);
 
     }
 
@@ -76,8 +76,8 @@ public final class GetCase extends JavaPlugin {
         {
             chestData.getLocation().getChunk().load(true);
 
-            chestData.getLocation().getBlock().setType(Material.AIR);
-            chestData.getArmorStand().remove();
+            //chestData.getLocation().getBlock().setType(Material.AIR);
+            //chestData.getArmorStand().remove();
         }
 
         for(Player player : Bukkit.getOnlinePlayers())

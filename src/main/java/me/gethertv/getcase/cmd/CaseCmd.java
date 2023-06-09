@@ -86,8 +86,6 @@ public class CaseCmd implements CommandExecutor, TabCompleter {
                 {
                     String name = args[1].toLowerCase();
                     FileConfiguration config = GetCase.getInstance().getConfig();
-                    config.set("cases."+name+".head", "http://textures.minecraft.net/texture/7d5beff1e1e4072174a5dca462af6af62385084e57f7c9cbd35d0cbc280ba369");
-                    config.set("cases."+name+".bg-head", "YELLOW_STAINED_GLASS");
                     config.set("cases."+name+".edit.material", "CHEST");
                     config.set("cases."+name+".edit.displayname", "&cCase "+name);
                     List<String> lore = new ArrayList<>();
